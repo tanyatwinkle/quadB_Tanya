@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "src/wallet_canister",
+    "src/store_canister"
+]
+resolver = "2"

@@ -1,0 +1,13 @@
+type TodoItem = record {
+    id: nat64;
+    title: text;
+    completed: bool;
+    created_at: nat64;
+};
+
+service : {
+    "get_todos": () -> (vec TodoItem) query;
+    "add_todo": (text) -> (TodoItem);
+    "update_todo": (nat64, bool) -> (variant { Ok: TodoItem; Err: text });
+    "delete_todo": (nat64) -> (variant { Ok; Err: text });
+}

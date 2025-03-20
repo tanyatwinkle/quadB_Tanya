@@ -1,0 +1,9 @@
+type StorageData = record {
+  content : text;
+  timestamp : nat64;
+};
+
+service : {
+  store : (text) -> ();
+  retrieve : () -> (opt StorageData) query;
+}

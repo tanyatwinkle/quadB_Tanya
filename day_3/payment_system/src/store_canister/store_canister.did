@@ -1,0 +1,16 @@
+type Product = record {
+  id: nat64;
+  name: text;
+  price: nat64;
+};
+
+type PaymentResult = variant {
+  Ok: text;
+  Err: text;
+};
+
+service : {
+  "add_product": (text, nat64) -> (Product);
+  "get_product": (nat64) -> (opt Product) query;
+  "purchase_product": (nat64, principal) -> (PaymentResult);
+}

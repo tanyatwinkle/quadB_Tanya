@@ -1,0 +1,35 @@
+type Proposal = record {
+  id: nat64;
+  title: text;
+  description: text;
+  creator: principal;
+  options: vec text;
+  active: bool;
+};
+
+type VoteResult = record {
+  option: text;
+  votes: nat64;
+};
+
+type Student = record {
+  id: text;
+  name: text;
+  hasVoted: bool;
+};
+
+service : {
+  // Student management
+  create_student: (id: text, name: text) -> (bool);
+  get_student: (id: text) -> (opt Student) query;
+  
+  // Proposal management
+  create_proposal: (title: text, description: text, options: vec text) -> (nat64);
+  get_proposal: (id: nat64) -> (opt Proposal) query;
+  get_all_proposals: () -> (vec Proposal) query;
+  end_proposal: (id: nat64) -> (bool);
+  
+  // Voting
+  vote: (proposal_id: nat64, option: text) -> (bool);
+  get_vote_results: (proposal_id: nat64) -> (vec VoteResult) query;
+};

@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "web3-integration-backend": {
+      "candid": "src/web3-integration-backend/web3-integration-backend.did",
+      "package": "web3-integration-backend",
+      "type": "rust"
+    },
+    "web3-integration-frontend": {
+      "dependencies": [
+        "web3-integration-backend"
+      ],
+      "source": [
+        "src/web3-integration-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "web3-integration-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

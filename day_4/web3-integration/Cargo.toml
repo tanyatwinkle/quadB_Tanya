@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/web3-integration-backend"
+]
+resolver = "2"

@@ -1,0 +1,16 @@
+type Account = record {
+  owner: principal;
+  balance: nat64;  // Changed from nat to nat64
+};
+
+type TransferResult = variant {
+  Ok: nat64;  // Changed from nat to nat64
+  Err: text;
+};
+
+service : {
+  "get_balance": (principal) -> (nat64) query;  // Changed return type to nat64
+  "deposit": (principal, nat64) -> (nat64);  // Changed parameter and return type to nat64
+  "withdraw": (principal, nat64) -> (TransferResult);
+  "transfer": (principal, principal, nat64) -> (TransferResult);
+}

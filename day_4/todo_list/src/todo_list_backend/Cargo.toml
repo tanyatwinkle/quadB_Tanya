@@ -1,0 +1,16 @@
+[package]
+name = "todo_list_backend"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+candid = "0.9.11"  # Use the same major version as ic-cdk is using
+ic-cdk = "0.11.6"
+ic-cdk-timers = "0.1.2"
+ic-stable-structures = "0.5.4"
+serde = { version = "1.0", features = ["derive"] }
