@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/multi_user_counter_backend"
+]
+resolver = "2"

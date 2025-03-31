@@ -1,0 +1,45 @@
+type Proposal = record {
+    id: nat64;
+    title: text;
+    description: text;
+    creator: principal;
+    yes_votes: nat64;
+    no_votes: nat64;
+    status: ProposalStatus;
+    voters: vec principal;
+};
+
+type ProposalStatus = variant {
+    Active;
+    Accepted;
+    Rejected;
+};
+
+type Vote = variant {
+    Yes;
+    No;
+};
+
+type UserCounter = record {
+    owner: principal;
+    count: int64;
+};
+
+type Result = variant {
+    Ok;
+    Err: text;
+};
+
+service : {
+    // Counter functions
+    "increment_counter": () -> (int64);
+    "decrement_counter": () -> (int64);
+    "get_counter": () -> (int64) query;
+    "get_all_counters": () -> (vec UserCounter) query;
+    
+    // Proposal functions
+    "create_proposal": (title: text, description: text) -> (nat64);
+    "vote": (proposal_id: nat64, vote: Vote) -> (Result);
+    "get_proposal": (id: nat64) -> (opt Proposal) query;
+    "get_all_proposals": () -> (vec Proposal) query;
+}

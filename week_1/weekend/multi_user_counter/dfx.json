@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "multi_user_counter_backend": {
+      "candid": "src/multi_user_counter_backend/multi_user_counter_backend.did",
+      "package": "multi_user_counter_backend",
+      "type": "rust"
+    },
+    "multi_user_counter_frontend": {
+      "dependencies": [
+        "multi_user_counter_backend"
+      ],
+      "source": [
+        "src/multi_user_counter_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "multi_user_counter_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

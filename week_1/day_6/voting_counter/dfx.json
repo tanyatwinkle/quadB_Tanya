@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "voting_counter_backend": {
+      "candid": "src/voting_counter_backend/voting_counter_backend.did",
+      "package": "voting_counter_backend",
+      "type": "rust"
+    },
+    "voting_counter_frontend": {
+      "dependencies": [
+        "voting_counter_backend"
+      ],
+      "source": [
+        "src/voting_counter_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "voting_counter_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

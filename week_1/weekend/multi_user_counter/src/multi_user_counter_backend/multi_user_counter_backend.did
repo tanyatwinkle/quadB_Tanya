@@ -1,0 +1,27 @@
+type Poll = record {
+    id : nat64;
+    name : text;
+    creator : principal;
+    options : vec VoteOption;
+};
+
+type VoteOption = record {
+    id : nat64;
+    name : text;
+    votes : nat64;
+};
+
+type Result = variant {
+    Ok : Poll;
+    Err : text;
+};
+
+service : {
+    "increment" : () -> (nat64);
+    "get_counter" : () -> (nat64) query;
+    "create_poll" : (text, vec text) -> (Poll);
+    "get_polls" : () -> (vec Poll) query;
+    "vote" : (nat64, nat64) -> (Result);
+    "get_poll" : (nat64) -> (Result) query;
+    "reset_vote" : (nat64) -> (StringResult);
+}
