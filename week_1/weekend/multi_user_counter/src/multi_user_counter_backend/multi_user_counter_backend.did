@@ -16,6 +16,11 @@ type Result = variant {
     Err : text;
 };
 
+type StringResult = variant {
+    Ok : text;
+    Err : text;
+};
+
 service : {
     "increment" : () -> (nat64);
     "get_counter" : () -> (nat64) query;

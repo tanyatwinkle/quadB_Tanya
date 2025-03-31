@@ -1,9 +1,13 @@
 use candid::{CandidType, Deserialize, Principal};
-use ic_cdk::api::call::RejectionCode;
 use ic_cdk_macros::*;
 use std::cell::RefCell;
 use std::collections::HashMap;
 
+#[derive(CandidType, Deserialize, Clone, Debug)]
+pub enum StringResult {
+    Ok(String),
+    Err(String),
+}
 #[derive(CandidType, Deserialize, Clone, Debug)]
 struct VoteOption {
     id: u64,
@@ -142,7 +146,7 @@ fn get_poll(poll_id: u64) -> Result<Poll, String> {
 }
 
 #[update]
-fn reset_vote(poll_id: u64) -> Result<String, String> {
+fn reset_vote(poll_id: u64) -> StringResult {
     let caller = ic_cdk::caller();
     
     // Check if user has voted on this poll
@@ -153,7 +157,7 @@ fn reset_vote(poll_id: u64) -> Result<String, String> {
     });
     
     if !has_voted {
-        return Err("You haven't voted on this poll yet".to_string());
+        return StringResult::Err("You haven't voted on this poll yet".to_string());
     }
     
     // Get the previously voted option
@@ -185,11 +189,12 @@ fn reset_vote(poll_id: u64) -> Result<String, String> {
             }
         });
         
-        Ok("Vote reset successfully".to_string())
+        StringResult::Ok("Vote reset successfully".to_string())
     } else {
-        Err("Failed to find your previous vote".to_string())
+        StringResult::Err("Failed to find your previous vote".to_string())
     }
 }
+
 
 // For Candid interface generation
 ic_cdk::export_candid!();
