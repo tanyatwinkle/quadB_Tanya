@@ -1,0 +1,236 @@
+/* Global Styles */
+:root {
+  --primary-color: oklch(65% 0.25 120); /* Vibrant OKLCH color */
+  --secondary-color: oklch(50% 0.15 240);
+  --background-color: #f9f9f9;
+  --accent-color: oklch(70% 0.3 45);
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+/* Responsive Typography */
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem); /* Scales with viewport size */
+}
+
+p {
+  line-height: 1.8;
+}
+
+/* Scroll-driven Animations */
+@scroll-timeline fade-timeline {
+  scroll-source: auto;
+  orientation: block;
+}
+
+.section {
+  scroll-timeline: fade-timeline;
+  animation: fade-in-slide-up ease-out forwards;
+}
+
+@keyframes fade-in-slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Advanced Grid Layouts */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1rem, calc(1vw + .5rem), 2rem); /* Responsive gap */
+}
+
+.card {
+  background-color: var(--secondary-color);
+  padding: clamp(1rem, calc(1vw + .5rem), 2rem);
+  border-radius: .8rem;
+  box-shadow: rgba(0,0,0,0.1) .3rem .5rem;
+  transition: transform .3s ease-in-out, background-color .3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Container Queries for Modular Components */
+@container (min-width: 600px) {
+  .card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .card img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .card-content {
+    flex-grow: 1;
+  }
+}
+
+/* Responsive Buttons */
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: clamp(0.5rem, calc(1vw + 0.5rem), 1rem);
+  border-radius: 8px;
+  font-size: clamp(1rem, calc(0.8vw + 0.5rem), 1.2rem);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, calc(1vw + .5rem), 2rem);
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  border: solid 2px var(--secondary-color);
+  border-radius: 8px;
+  padding: clamp(0.5rem, calc(1vw + .5rem), .8rem);
+  font-size: clamp(1rem, calc(0.8vw + .4rem), 1.2rem);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Advanced Animations */
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 6px;
+  }
+  to {
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 6px 12px;
+  }
+}
+
+.card:hover {
+  animation: pulse 0.6s infinite alternate;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Responsive Layout with CSS Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1rem, calc(1vw + .5rem), 2rem); /* Responsive gaps */
+}
+
+.grid-item {
+  background-color: var(--secondary-color);
+  padding: clamp(1rem, calc(1vw + .5rem), 2rem);
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* Dynamic Form Controls */
+input[type="text"],
+input[type="number"],
+textarea,
+button {
+  width: calc(100% - clamp(1rem, calc(1vw + .5rem), 2rem));
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* View Transitions API for Smooth Page Changes */
+::view-transition-old {
+  opacity: 1;
+}
+
+::view-transition-new {
+  opacity: 0;
+}
+
+::view-transition-new,
+::view-transition-old {
+  transition: opacity ease-in-out 0.5s;
+}
+
+/* Scroll Snap Behavior for Sections */
+.scroll-container {
+  scroll-snap-type: y mandatory;
+}
+
+.scroll-section {
+  scroll-snap-align: start;
+}
+
+/* Media Queries for Mobile-First Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: clamp(1.5rem, calc(4vw + .5rem), 3rem);
+    text-align: center;
+    margin-bottom: clamp(1rem, calc(2vw + .5rem), 2rem);
+  }
+
+  .card,
+  .grid-item {
+    padding: clamp(0.8rem, calc(2vw + .5rem), 1.5rem);
+    font-size: clamp(0.9rem, calc(2vw + .3rem), 1.2rem);
+    box-shadow: none; /* Simplify for smaller devices */
+    transition: none; /* Reduce animations on mobile for performance */
+    border-radius: clamp(8px, calc(2vw + .5rem), 12px);
+    margin-bottom: clamp(1rem, calc(2vw + .5rem), 2rem);
+    text-align: left; /* Better readability on small screens */
+    display: block; /* Stack layout for mobile */
+    width: auto; /* Full width on smaller devices */
+}
+}
